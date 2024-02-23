@@ -6,6 +6,8 @@ TagManager:
   tags:
   - PlatformCreator
   - Platform
+  - Road
+  - Obstacle
   layers:
   - Default
   - TransparentFX
