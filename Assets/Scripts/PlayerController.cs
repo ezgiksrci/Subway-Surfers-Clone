@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
     {
 
         HandlePlayerMovement();
+        Debug.Log(_rigidbody.velocity);
 
     }
 
@@ -90,7 +91,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandlePlayerMovement()
     {
-        if (!_isSliding)
+        if (!_isSliding && _playerState == PlayerState.Running)
         {
             if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
             {
@@ -108,9 +109,11 @@ public class PlayerController : MonoBehaviour
                 {
                     return;
                 }
+
                 _rigidbody.velocity = transform.right * -_sideSlideForce;
                 _isSliding = true;
                 StartCoroutine(ResetMovement());
+                return;
             }
             else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
             {
@@ -131,23 +134,22 @@ public class PlayerController : MonoBehaviour
                 _rigidbody.velocity = transform.right * _sideSlideForce;
                 _isSliding = true;
                 StartCoroutine(ResetMovement());
+                return;
             }
             else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
             {
                 // The Player is leaning...
                 _playerState = PlayerState.Leaning;
             }
-        }
-
-
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space))
-        {
-            if (_playerState != PlayerState.Jumping)
+            else if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space))
             {
-                // The Player is jumping... 
-                _playerState = PlayerState.Jumping;
-                _animator.SetTrigger("Jumped");
-                _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+                if (_playerState != PlayerState.Jumping && !_isSliding)
+                {
+                    // The Player is jumping... 
+                    _playerState = PlayerState.Jumping;
+                    _animator.SetTrigger("Jumped");
+                    _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+                }
             }
         }
     }

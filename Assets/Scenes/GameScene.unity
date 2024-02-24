@@ -47729,7 +47729,7 @@ MonoBehaviour:
   _sideSlideForce: 6.5
   _jumpForce: 5
   _animationDuration: 3
-  _slideDuration: 0.5
+  _slideDuration: 0.4
 --- !u!1 &8588475938208934028
 GameObject:
   m_ObjectHideFlags: 0
