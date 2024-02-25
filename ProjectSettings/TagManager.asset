@@ -8,6 +8,7 @@ TagManager:
   - Platform
   - Road
   - Obstacle
+  - RoadLine
   layers:
   - Default
   - TransparentFX

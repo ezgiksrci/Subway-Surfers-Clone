@@ -13,8 +13,8 @@ public class PlatformCreator : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Platform"))
         {
-            AddPlatformToMovingList(SelectRandomPlatform());
             RemovePlatformFromMovingList(other.gameObject);
+            AddPlatformToMovingList(SelectRandomPlatform());
         }
     }
 
