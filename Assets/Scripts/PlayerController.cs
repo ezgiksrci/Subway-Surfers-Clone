@@ -190,5 +190,10 @@ public class PlayerController : MonoBehaviour
             other.gameObject.SetActive(false);
         }
     }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.OnGameOver -= GameManager_OnGameOver;
+    }
 }
 

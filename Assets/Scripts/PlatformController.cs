@@ -28,9 +28,9 @@ public class PlatformController : MonoBehaviour
         _isGameOver = true;
     }
 
-    private void GameManager_OnGameSpeedChanged(object sender, GameManager.OnGameSpeedChangedEventArgs e)
+    private void GameManager_OnGameSpeedChanged(int gameSpeed)
     {
-        _movingSpeed = e.gameSpeed;
+        _movingSpeed = gameSpeed;
     }
 
     void Update()
@@ -44,5 +44,6 @@ public class PlatformController : MonoBehaviour
     private void OnDestroy()
     {
         GameManager.Instance.OnGameSpeedChanged -= GameManager_OnGameSpeedChanged;
+        GameManager.Instance.OnGameOver += GameManager_OnGameOver;
     }
 }
