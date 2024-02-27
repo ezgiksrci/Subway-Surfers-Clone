@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
 
         if (_isClimbing)
         {
-            _rigidbody.AddForce(Vector3.up * _climbForce, ForceMode.Force);
+            _rigidbody.AddForce(Vector3.up * _climbForce * GameManager.Instance.GameSpeed / 10, ForceMode.Force);
         }
     }
 

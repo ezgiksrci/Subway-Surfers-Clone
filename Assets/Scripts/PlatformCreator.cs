@@ -19,9 +19,9 @@ public class PlatformCreator : MonoBehaviour
             AddPlatformToMovingList(SelectRandomPlatform());
             _passedPlatformNumber++;
 
-            if (_passedPlatformNumber % 5 == 0)
+            if (_passedPlatformNumber % 2 == 0)
             {
-                GameManager.Instance.GameSpeed += 5;
+                GameManager.Instance.GameSpeed += 2;
             }
         }
     }

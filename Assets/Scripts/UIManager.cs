@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private PlayerController _player;
     [SerializeField] private TextMeshProUGUI _coinText;
+    [SerializeField] private TextMeshProUGUI _scoreText;
     [SerializeField] private TextMeshProUGUI _healthText;
     [SerializeField] private GameObject _tryAgainUI;
 
@@ -29,9 +30,10 @@ public class UIManager : MonoBehaviour
         _healthText.text = health.ToString();
     }
 
-    private void GameManager_OnCoinChanged(int coin)
+    private void GameManager_OnCoinChanged(int coin, int score)
     {
         _coinText.text = coin.ToString();
+        _scoreText.text = score.ToString();
     }
 
     private void OnDestroy()

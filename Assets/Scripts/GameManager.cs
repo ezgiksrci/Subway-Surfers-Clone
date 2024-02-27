@@ -5,11 +5,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     [SerializeField] private PlayerController _player;
+    [SerializeField] private int _score = 0;
+    [SerializeField] private float _scoreMultiplier = 1f;
 
     public event Action OnGameOver;
     public event Action<int> OnHealthChanged;
-    public event Action<int> OnCoinChanged;
-
+    public event Action<int, int> OnCoinChanged;
     public event Action<int> OnGameSpeedChanged;
 
     public int GameSpeed
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
         {
             _gameSpeed = value;
             OnGameSpeedChanged?.Invoke(_gameSpeed);
+            _scoreMultiplier *= 1.2f;
             Debug.Log("The game is speed up!");
         }
     }
@@ -47,7 +49,8 @@ public class GameManager : MonoBehaviour
     private void Player_OnCoinCollected()
     {
         _coinNumber++;
-        OnCoinChanged?.Invoke(_coinNumber);
+        _score = (int)((_coinNumber * _scoreMultiplier) * 10f);
+        OnCoinChanged?.Invoke(_coinNumber, _score);
     }
 
     private void Player_OnPlayerGetHurt()
