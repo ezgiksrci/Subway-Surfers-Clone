@@ -9,7 +9,7 @@
 - ✅ Karakter Animasyonu
 - ✅ Karşınıza duvarlar ve engeller çıkmalı, bazı alçak engellerin üstünden atlamalı, bazı yüksek engellerin altından geçmeli, bazı engellerin de yanından geçerek kurtulmalısınız.
 - ✅ Görevin zorunlu kısmı için bir yere çarptığımızda ölmemiz yeterlidir.
-- ❌ Subway Surfers'daki gibi rampa ile çıkılıp üst katta (trenlerin üzerinde) gezme mekaniği bizde de olmalı. Dilerseniz kutulardan rampa yaparak dilerseniz paket içindeki merdivenleri kullanarak bu tarz yapılar elde edebilirsiniz.
+- ✅[](url) Subway Surfers'daki gibi rampa ile çıkılıp üst katta (trenlerin üzerinde) gezme mekaniği bizde de olmalı. Dilerseniz kutulardan rampa yaparak dilerseniz paket içindeki merdivenleri kullanarak bu tarz yapılar elde edebilirsiniz.
 - ❌ Skor tutulmalı, bu skor oyunda gösterilmeli ve en yüksek skorumuz kaydedilmelidir. Kendi en yüksek skorumuzu geçtiğimizde skor göstergesi renk değiştirmelidir. Puan mesafe arttıkça artmalıdır.
 
 ## İsteğe Bağlı Gerekli Özellikler
