@@ -1,7 +1,7 @@
 # Subway-Surfers-Clone
 
 - [Gameplay Video YouTube Link](https://www.youtube.com/watch?v=yiheLL1Wqac)
-- [Windows Release](https://github.com/ezgiksrci/Subway-Surfers-Clone/releases/download/Windows/Win64.zip)
+- [Windows Release](https://github.com/ezgiksrci/Subway-Surfers-Clone/releases/download/Windows/Win64.zip)](https://github.com/ezgiksrci/Subway-Surfers-Clone/releases/download/v0.2.0/Win64_0.2.zip)
 
 ## İstenen Özellikler:
 - ✅ Oyun SONSUZ şekilde ilerlemelidir, yani ölünceye kadar bitmemelidir.
