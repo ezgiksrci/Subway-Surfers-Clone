@@ -2644,9 +2644,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8585524188248978018}
   - component: {fileID: 8588456695229617892}
+  - component: {fileID: 8588456695229617895}
   - component: {fileID: 8530007442736034246}
   - component: {fileID: 8588456695229617894}
-  - component: {fileID: 8588456695229617895}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2694,11 +2694,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerSideLocation: 2
-  _sideSlideForce: 7.2
+  _sideSlideForce: 6.05
   _jumpForce: 5
   _flashingAnimationDuration: 3
   _dyingAnimationDuration: 5
-  _slideDuration: 0.5
+  _slideDuration: 0.4
 --- !u!136 &8588456695229617895
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2719,9 +2719,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.16503069
-  m_Height: 1.4801224
+  m_Height: 1.6026169
   m_Direction: 1
-  m_Center: {x: 0.011165589, y: 0.7648465, z: 0}
+  m_Center: {x: 0.011165589, y: 0.82609373, z: 0}
 --- !u!1 &8588475938208934028
 GameObject:
   m_ObjectHideFlags: 0

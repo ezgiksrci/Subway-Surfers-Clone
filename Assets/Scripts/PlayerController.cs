@@ -105,6 +105,8 @@ public class PlayerController : MonoBehaviour
             }
             else if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && _playerState == PlayerState.Running)
             {
+                GetComponent<CapsuleCollider>().height = 1.04149f;
+                GetComponent<CapsuleCollider>().center = new Vector3(GetComponent<CapsuleCollider>().center.x, 0.5455304f, GetComponent<CapsuleCollider>().center.z);
                 _animator.SetTrigger("Rolled");
             }
             else if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space))
@@ -194,6 +196,11 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         GameManager.Instance.OnGameOver -= GameManager_OnGameOver;
+    }
+    public void AnimationCompleted()
+    {
+        GetComponent<CapsuleCollider>().height = 1.602617f;
+        GetComponent<CapsuleCollider>().center = new Vector3(GetComponent<CapsuleCollider>().center.x, 0.8260937f, GetComponent<CapsuleCollider>().center.z);
     }
 }
 
