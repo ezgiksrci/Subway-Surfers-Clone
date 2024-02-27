@@ -11,7 +11,6 @@ public enum ObstacleType
 
 public class ObstacleCreator : MonoBehaviour
 {
-    [SerializeField] private ObstacleType _obstacleType;
     [SerializeField] private List<Transform> _obstaclePool;
 
     private void OnEnable()

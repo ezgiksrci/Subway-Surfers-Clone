@@ -7,8 +7,7 @@ using UnityEngine.UIElements;
 public enum PlayerState
 {
     Running,
-    Jumping,
-    Leaning
+    Jumping
 }
 
 public enum PlayerSide
@@ -21,11 +20,13 @@ public enum PlayerSide
 public class PlayerController : MonoBehaviour
 {
     public event Action OnPlayerGetHurt;
+    public event Action OnCoinCollected;
 
     [SerializeField] private float _playerSideLocation;
     [SerializeField] private float _sideSlideForce;
     [SerializeField] private float _jumpForce;
-    [SerializeField] private float _animationDuration;
+    [SerializeField] private float _flashingAnimationDuration;
+    [SerializeField] private float _dyingAnimationDuration;
     [SerializeField] private float _slideDuration;
 
     private PlayerSide _playerSide;
@@ -44,6 +45,16 @@ public class PlayerController : MonoBehaviour
         _canVulnerable = true;
         _playerSide = PlayerSide.Center;
         _playerState = PlayerState.Running;
+
+        GameManager.Instance.OnGameOver += GameManager_OnGameOver;
+    }
+
+    private void GameManager_OnGameOver()
+    {
+        _animator.SetBool("IsDead", true);
+
+        // call a function to stop the the game after a given duration...
+        Invoke(nameof(StopTheGame), _dyingAnimationDuration);
     }
 
     private void FixedUpdate()
@@ -94,8 +105,7 @@ public class PlayerController : MonoBehaviour
             }
             else if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && _playerState == PlayerState.Running)
             {
-                // The Player is leaning...
-                _playerState = PlayerState.Leaning;
+                _animator.SetTrigger("Rolled");
             }
             else if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space))
             {
@@ -108,6 +118,12 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void StopTheGame()
+    {
+        Debug.Log("Game Over");
+        Time.timeScale = 0;
     }
 
     private IEnumerator ResetMovement()
@@ -155,15 +171,24 @@ public class PlayerController : MonoBehaviour
             _canVulnerable = false;
 
             // call a function to stop the animation after a given duration...
-            Invoke(nameof(StopAnimation), _animationDuration);
+            Invoke(nameof(StopFlashingAnimation), _flashingAnimationDuration);
         }
     }
 
     // function to stop the animation after a given duration...
-    private void StopAnimation()
+    private void StopFlashingAnimation()
     {
         _animator.SetBool("IsFlashing", false);
         _canVulnerable = true;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Coin"))
+        {
+            OnCoinCollected?.Invoke();
+            other.gameObject.SetActive(false);
+        }
     }
 }
 

@@ -9,6 +9,7 @@ TagManager:
   - Road
   - Obstacle
   - RoadLine
+  - Coin
   layers:
   - Default
   - TransparentFX

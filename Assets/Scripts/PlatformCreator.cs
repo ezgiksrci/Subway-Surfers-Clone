@@ -2,11 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static GameManager;
 
 public class PlatformCreator : MonoBehaviour
 {
     [SerializeField] List<GameObject> allPlatforms;
     [SerializeField] List<GameObject> movingPlatforms;
+    [SerializeField] int _passedPlatformNumber;
 
 
     private void OnTriggerEnter(Collider other)
@@ -15,6 +17,12 @@ public class PlatformCreator : MonoBehaviour
         {
             RemovePlatformFromMovingList(other.gameObject);
             AddPlatformToMovingList(SelectRandomPlatform());
+            _passedPlatformNumber++;
+
+            if (_passedPlatformNumber % 5 == 0)
+            {
+                GameManager.Instance.GameSpeed += 5;
+            }
         }
     }
 
