@@ -8,9 +8,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int _score = 0;
     [SerializeField] private float _scoreMultiplier = 1f;
 
+
     public event Action OnGameOver;
     public event Action<int> OnHealthChanged;
-    public event Action<int, int> OnCoinChanged;
+    public event Action<int, int, bool> OnCoinChanged;
     public event Action<int> OnGameSpeedChanged;
 
     public int GameSpeed
@@ -29,6 +30,9 @@ public class GameManager : MonoBehaviour
     }
     [SerializeField] private int _gameSpeed;
 
+    public int HighScore { get => _highScore; }
+    private int _highScore;
+
     public int PlayerHealth { get => _playerHealth; }
     [SerializeField] private int _playerHealth = 3;
 
@@ -44,13 +48,22 @@ public class GameManager : MonoBehaviour
     {
         _player.OnPlayerGetHurt += Player_OnPlayerGetHurt;
         _player.OnCoinCollected += Player_OnCoinCollected;
+        LoadHighScore();
     }
 
     private void Player_OnCoinCollected()
     {
         _coinNumber++;
         _score = (int)((_coinNumber * _scoreMultiplier) * 10f);
-        OnCoinChanged?.Invoke(_coinNumber, _score);
+
+        if (_score >= _highScore)
+        {
+            _highScore = _score;
+
+            PlayerPrefs.SetInt("HighScore", _highScore);
+            PlayerPrefs.Save();
+        }
+        OnCoinChanged?.Invoke(_coinNumber, _score, _score >= _highScore);
     }
 
     private void Player_OnPlayerGetHurt()
@@ -70,5 +83,10 @@ public class GameManager : MonoBehaviour
     {
         _player.OnPlayerGetHurt -= Player_OnPlayerGetHurt;
         _player.OnCoinCollected -= Player_OnCoinCollected;
+    }
+
+    private void LoadHighScore()
+    {
+        _highScore = PlayerPrefs.GetInt("HighScore", 0);
     }
 }

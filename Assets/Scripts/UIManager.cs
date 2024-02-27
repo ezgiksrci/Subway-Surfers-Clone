@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private PlayerController _player;
     [SerializeField] private TextMeshProUGUI _coinText;
     [SerializeField] private TextMeshProUGUI _scoreText;
+    [SerializeField] private TextMeshProUGUI _highScoreText;
     [SerializeField] private TextMeshProUGUI _healthText;
     [SerializeField] private GameObject _tryAgainUI;
 
@@ -18,6 +19,8 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.OnCoinChanged += GameManager_OnCoinChanged;
         GameManager.Instance.OnHealthChanged += GameManager_OnHealthChanged;
         GameManager.Instance.OnGameOver += GameManager_OnGameOver;
+
+        _highScoreText.text = GameManager.Instance.HighScore.ToString();
     }
 
     private void GameManager_OnGameOver()
@@ -30,10 +33,16 @@ public class UIManager : MonoBehaviour
         _healthText.text = health.ToString();
     }
 
-    private void GameManager_OnCoinChanged(int coin, int score)
+    private void GameManager_OnCoinChanged(int coin, int score, bool isItHighScore)
     {
         _coinText.text = coin.ToString();
         _scoreText.text = score.ToString();
+
+        if (isItHighScore)
+        {
+            _highScoreText.text = GameManager.Instance.HighScore.ToString();
+            _scoreText.color = Color.red;
+        }
     }
 
     private void OnDestroy()
