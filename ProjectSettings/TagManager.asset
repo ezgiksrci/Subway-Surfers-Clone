@@ -10,6 +10,7 @@ TagManager:
   - Obstacle
   - RoadLine
   - Coin
+  - Stairs
   layers:
   - Default
   - TransparentFX

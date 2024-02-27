@@ -25,14 +25,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _playerSideLocation;
     [SerializeField] private float _sideSlideForce;
     [SerializeField] private float _jumpForce;
+    [SerializeField] private float _climbForce;
     [SerializeField] private float _flashingAnimationDuration;
     [SerializeField] private float _dyingAnimationDuration;
     [SerializeField] private float _slideDuration;
 
     private PlayerSide _playerSide;
     private PlayerState _playerState;
-    private bool _canVulnerable;
-    private bool _isSliding;
+    private bool _canVulnerable = true;
+    private bool _isSliding = false;
+    public bool _isClimbing = false;
     private Rigidbody _rigidbody;
     private Animator _animator;
 
@@ -41,8 +43,6 @@ public class PlayerController : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         _animator = GetComponent<Animator>();
 
-        _isSliding = false;
-        _canVulnerable = true;
         _playerSide = PlayerSide.Center;
         _playerState = PlayerState.Running;
 
@@ -61,6 +61,11 @@ public class PlayerController : MonoBehaviour
     {
         HandlePlayerMovement();
         ResetPosition();
+
+        if (_isClimbing)
+        {
+            _rigidbody.AddForce(Vector3.up * _climbForce, ForceMode.Force);
+        }
     }
 
     private void HandlePlayerMovement()
@@ -159,6 +164,18 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Road"))
         {
             _playerState = PlayerState.Running;
+        }
+
+        if (collision.gameObject.CompareTag("Stairs"))
+        {
+            _isClimbing = true;
+        }
+    }
+    void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Stairs"))
+        {
+            _isClimbing = false;
         }
     }
 

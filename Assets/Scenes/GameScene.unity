@@ -2696,9 +2696,11 @@ MonoBehaviour:
   _playerSideLocation: 2
   _sideSlideForce: 6.05
   _jumpForce: 5
+  _climbForce: 5
   _flashingAnimationDuration: 3
   _dyingAnimationDuration: 5
   _slideDuration: 0.4
+  _isClimbing: 0
 --- !u!136 &8588456695229617895
 CapsuleCollider:
   m_ObjectHideFlags: 0
