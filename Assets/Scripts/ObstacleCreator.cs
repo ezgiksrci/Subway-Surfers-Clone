@@ -11,28 +11,24 @@ public enum ObstacleType
 
 public class ObstacleCreator : MonoBehaviour
 {
-    [SerializeField] private List<Transform> _obstaclePool;
+    [SerializeField] private ObstaclePool _obstaclePool;
+    [SerializeField] private ObstacleType _obstacleType;
+
+    private GameObject _randomObstacle;
 
     private void OnEnable()
     {
-        DisableAllObstacles();
-        EnableRandomObstacle();
-    }
-
-    private void DisableAllObstacles()
-    {
-        foreach (var obstacle in _obstaclePool)
+        if (_randomObstacle == null)
         {
-            if (obstacle.gameObject.activeSelf)
-            {
-                obstacle.gameObject.SetActive(false);
-            }
+            _randomObstacle = _obstaclePool.GetRandomObstacle(_obstacleType);
+            _randomObstacle.transform.SetParent(transform, false);
+            _randomObstacle.SetActive(true);
         }
     }
 
-    private void EnableRandomObstacle()
+    private void OnDisable()
     {
-        Transform randomObstacle = _obstaclePool[UnityEngine.Random.Range(0, _obstaclePool.Count)];
-        randomObstacle.gameObject.SetActive(true);
+        ObstaclePool.Instance.AddObstacleToList(_randomObstacle, _obstacleType);
+        _randomObstacle = null;
     }
 }

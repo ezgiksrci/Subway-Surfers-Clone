@@ -6,9 +6,9 @@ using static GameManager;
 
 public class PlatformCreator : MonoBehaviour
 {
-    [SerializeField] List<GameObject> allPlatforms;
-    [SerializeField] List<GameObject> movingPlatforms;
-    [SerializeField] int _passedPlatformNumber;
+    [SerializeField] private List<GameObject> allPlatforms;
+    [SerializeField] private List<GameObject> movingPlatforms;
+    [SerializeField] private int _passedPlatformNumber;
 
 
     private void OnTriggerEnter(Collider other)

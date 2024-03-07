@@ -1,11 +1,13 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlatformController : MonoBehaviour
 {
+    [SerializeField] private List<Transform> _coinList;
+
     private int _movingSpeed;
     private bool _isGameOver;
-    [SerializeField] private List<Transform> _coinList;
 
     private void OnEnable()
     {
