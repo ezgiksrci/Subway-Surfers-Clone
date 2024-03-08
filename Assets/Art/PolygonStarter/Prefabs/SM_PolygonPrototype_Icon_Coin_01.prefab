@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68c85f903f970554c89c0ed797fdc147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnThreshold: 100
-  despawnThreshold: -10
+  _spawnThreshold: 100
+  _despawnThreshold: -15

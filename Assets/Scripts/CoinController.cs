@@ -4,8 +4,8 @@ public class CoinController : MonoBehaviour
 {
     private GameObject _coin;
 
-    [SerializeField] private float spawnThreshold = 130f;
-    [SerializeField] private float despawnThreshold = -80f;
+    [SerializeField] private float _spawnThreshold = 120f;
+    [SerializeField] private float _despawnThreshold = -20f;
     private bool _isCollected;
 
     private void OnEnable()
@@ -18,7 +18,7 @@ public class CoinController : MonoBehaviour
         float currentZPosition = transform.position.z;
 
         // Check if coin should be spawned..
-        if (currentZPosition <= spawnThreshold && currentZPosition > despawnThreshold && !_coin && !_isCollected)
+        if (currentZPosition <= _spawnThreshold && currentZPosition > _despawnThreshold && !_coin && !_isCollected)
         {
             // Get coin from the pool...
             _coin = CoinPool.Instance.GetCoin();
@@ -28,7 +28,7 @@ public class CoinController : MonoBehaviour
             _coin.SetActive(true);
         }
         // Check if coin should be despawned...
-        else if (currentZPosition <= despawnThreshold && _coin != null)
+        else if (currentZPosition <= _despawnThreshold && _coin != null)
         {
             // Return coin to the pool...
             CoinPool.Instance.ReturnCoin(_coin);

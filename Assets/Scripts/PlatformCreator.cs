@@ -6,8 +6,8 @@ using static GameManager;
 
 public class PlatformCreator : MonoBehaviour
 {
-    [SerializeField] private List<PlatformController> allPlatforms;
-    [SerializeField] private List<PlatformController> movingPlatforms;
+    [SerializeField] private List<PlatformController> _allPlatforms;
+    [SerializeField] private List<PlatformController> _movingPlatforms;
     [SerializeField] private int _passedPlatformNumber;
 
 
@@ -28,14 +28,14 @@ public class PlatformCreator : MonoBehaviour
 
     private void AddPlatformToMovingList(PlatformController newPlatform)
     {
-        movingPlatforms.Add(newPlatform);
+        _movingPlatforms.Add(newPlatform);
         newPlatform.transform.position = new Vector3(0, 0, 207);
         newPlatform.gameObject.SetActive(true);
     }
     private void RemovePlatformFromMovingList(PlatformController oldPlatform)
     {
         oldPlatform.gameObject.SetActive(false);
-        movingPlatforms.Remove(oldPlatform);
+        _movingPlatforms.Remove(oldPlatform);
     }
 
     private PlatformController SelectRandomPlatform()
@@ -44,8 +44,8 @@ public class PlatformCreator : MonoBehaviour
 
         do
         {
-            newPlatform = allPlatforms[UnityEngine.Random.Range(0, allPlatforms.Count)];
-        } while (movingPlatforms.Contains(newPlatform));
+            newPlatform = _allPlatforms[UnityEngine.Random.Range(0, _allPlatforms.Count)];
+        } while (_movingPlatforms.Contains(newPlatform));
 
         return newPlatform;
     }

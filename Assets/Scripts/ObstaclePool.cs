@@ -6,8 +6,8 @@ public class ObstaclePool : MonoBehaviour
 {
     public static ObstaclePool Instance;
 
-    [SerializeField] private List<GameObject> SurmountableObstacles;
-    [SerializeField] private List<GameObject> NonSurmountableObstacles;
+    [SerializeField] private List<GameObject> _surmountableObstacles;
+    [SerializeField] private List<GameObject> _nonSurmountableObstacles;
 
     [SerializeField] private GameObject _surmountableObstaclesParent;
     [SerializeField] private GameObject _nonSurmountableObstaclesParent;
@@ -25,10 +25,10 @@ public class ObstaclePool : MonoBehaviour
         {
             while (randomObstacle == null || randomObstacle.activeInHierarchy)
             {
-                randomObstacle = SurmountableObstacles[Random.Range(0, SurmountableObstacles.Count)];
+                randomObstacle = _surmountableObstacles[Random.Range(0, _surmountableObstacles.Count)];
                 if (randomObstacle != null && !randomObstacle.activeInHierarchy)
                 {
-                    SurmountableObstacles.Remove(randomObstacle);
+                    _surmountableObstacles.Remove(randomObstacle);
                     return randomObstacle;
                 }
             }
@@ -37,10 +37,10 @@ public class ObstaclePool : MonoBehaviour
         {
             while (randomObstacle == null || randomObstacle.activeInHierarchy)
             {
-                randomObstacle = NonSurmountableObstacles[Random.Range(0, NonSurmountableObstacles.Count)];
+                randomObstacle = _nonSurmountableObstacles[Random.Range(0, _nonSurmountableObstacles.Count)];
                 if (randomObstacle != null && !randomObstacle.activeInHierarchy)
                 {
-                    NonSurmountableObstacles.Remove(randomObstacle);
+                    _nonSurmountableObstacles.Remove(randomObstacle);
                     return randomObstacle;
                 }
             }
@@ -52,12 +52,12 @@ public class ObstaclePool : MonoBehaviour
     {
         if (obstacleType == ObstacleType.Surmountable)
         {
-            SurmountableObstacles.Add(obstacle);
+            _surmountableObstacles.Add(obstacle);
             obstacle.SetActive(false);
         }
         else
         {
-            NonSurmountableObstacles.Add(obstacle);
+            _nonSurmountableObstacles.Add(obstacle);
             obstacle.SetActive(false);
         }
     }
