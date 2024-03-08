@@ -206,7 +206,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Coin"))
         {
             OnCoinCollected?.Invoke();
-            other.gameObject.SetActive(false);
+            other.gameObject.transform.GetComponentInParent<CoinController>().ResetCoin();
         }
     }
 

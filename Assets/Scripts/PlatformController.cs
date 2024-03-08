@@ -4,18 +4,8 @@ using UnityEngine;
 
 public class PlatformController : MonoBehaviour
 {
-    [SerializeField] private List<Transform> _coinList;
-
     private int _movingSpeed;
     private bool _isGameOver;
-
-    private void OnEnable()
-    {
-        foreach (var coin in _coinList)
-        {
-            coin.gameObject.SetActive(true);
-        }
-    }
 
     private void Start()
     {
