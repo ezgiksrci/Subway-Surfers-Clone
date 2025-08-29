@@ -20,4 +20,7 @@
 - ✅ Bir yere çarptığımızda doğrudan ölmemeliyiz, 3 çarpma hakkımız olmalı ve bir yere çarptığımızda görsel olarak birşekilde bize gösterilen (blink/yanıp sönme olabilir) birkaç saniyelik bir periyot olmalı ve bu süre içinde herhangi bir şeye çarpamamalıyız.
 - ✅ Karakterimiz giderek hızlanırsa bu sizin için bir artı puandır
 - ✅ Altın toplama yaparsanız ve ✅ toplanan altın başına da ilave puan koyarsanız bu bir artı puandır
-- ✅ Altın toplama yaparsanız ve bir de bu altınların dönme animasyonunu yaparsanız bu da bir artı puandır
+- ✅ Altın toplama yaparsanız ve bir de bu altınların dönme animasyonunu yaparsanız bu da bir artı puandır.
+
+
+🔗 Daha fazla bilgi için [LICENSE.md](./LICENSE.md) dosyasına bakın.
